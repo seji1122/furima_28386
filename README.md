@@ -7,7 +7,7 @@
 | nickname | string | null: false |
 | email    | string | null: false |
 | password | string | null: false |
-| date     | string | null: false |
+| birthday | date   | null: false |
 |first_name | string | null: false |
 |family_name | string | null: false |
 |first_name_furigana | string | null: false |
@@ -25,7 +25,7 @@
 | ------ | ------ | ----------- |
 | image   | string | null: false |
 | name | string | null: false |
-| item_introduction | string | null: false |
+| introduction | string | null: false |
 | category | integer | null: false |
 | item_condition | integer | null: false |
 | delivery_fee | integer | null: false |
