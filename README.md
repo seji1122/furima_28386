@@ -1,24 +1,64 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column   | Type   | Options     |
+| -------- | ------ | ----------- |
+| nickname | string | null: false |
+| email    | string | null: false |
+| password | string | null: false |
+| birthday | date   | null: false |
+|first_name | string | null: false |
+|family_name | string | null: false |
+|first_name_furigana | string | null: false |
+|family_name_furigana | string | null: false |
 
-* Ruby version
 
-* System dependencies
+### Association
 
-* Configuration
+- has_many :items
+- has_many :purchases
 
-* Database creation
+## items テーブル
 
-* Database initialization
+| Column | Type   | Options     |
+| ------ | ------ | ----------- |
+| image   | string | null: false |
+| name | string | null: false |
+| introduction | string | null: false |
+| category | integer | null: false |
+| item_condition | integer | null: false |
+| delivery_fee | integer | null: false |
+| shipping_area | integer | null: false |
+| shipping_days | integer | null: false |
+| user | references | foreign_key: true|
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- belongs_to :user
+- has_one :purchases
 
-* Deployment instructions
+## delivery テーブル
 
-* ...
+| Column | Type   | Options     |
+| ------ | ------ | ----------- |
+| post_coad | string | null: false |
+| prefectures | integer | null: false |
+| city | string | null: false |
+| banci | string | null: false |
+| buliding_num | string |      |
+| phone_num | string | null: false |
+| purchase | references | null: false, foreign_key: true|
+
+- belongs_to :purchase
+
+## purchases テーブル
+
+| Column | Type   | Options     |
+| ------ | ------ | ----------- |
+| user | references | null: false, foreign_key: true|
+| item | references | null: false |
+
+belongs_to :user
+belongs_to :item
+has_one :delivery
