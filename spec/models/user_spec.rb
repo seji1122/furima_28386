@@ -7,6 +7,7 @@ describe User, type: :model do
   describe 'ユーザー新規登録' do
     context '新規登録がうまくいくとき' do
       it "nickname、email、password、birthday、first_name、family_name、first_name_furigana、family_name_furiganaとpassword_confirmationが存在すれば登録できる" do
+        expect(@user).to be_valid
       end
       it "nicknameが6文字以下で登録できる" do
         @user.nickname = "aaaaaa"
@@ -17,30 +18,7 @@ describe User, type: :model do
         @user.password_confirmation = "000000"
         expect(@user).to be_valid
       end
-      it "emailの記述があれば登録できる"do
-        @user.email = "tech@gmail.com"
-        expect(@user).to be_valid
-      end
-      it "birthdayの記述があれば登録できる"do
-        @user.birthday = "1995-09-09"
-        expect(@user).to be_valid
-      end
-      it "first_nameの記述があれば登録できる"do
-        @user.first_name = "太郎"
-        expect(@user).to be_valid
-      end
-      it "family_nameの記述があれば登録できる"do
-        @user.family_name = "山田"
-        expect(@user).to be_valid
-      end
-      it "first_name_furiganaの記述があれば登録できる"do
-        @user.first_name_furigana = "ヤマダ"
-        expect(@user).to be_valid
-      end
-      it "family_name_furiganaの記述があれば登録できる"do
-        @user.family_name_furigana = "ヤマダ"
-        expect(@user).to be_valid
-      end
+      
 
 
     end
@@ -51,10 +29,10 @@ describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
-      it "emailが空では登録できない" do
-        @user.email = ''
+      it "emailに@が含まれない場合は登録できない" do
+        @user.email = 'yamada.yamada'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email can't be blank")
+        expect(@user.errors.full_messages).to include("Email is invalid")
       end
       it "重複したemailが存在する場合登録できない" do
         @user.save
@@ -109,7 +87,22 @@ describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("First name furigana is invalid")
       end
+      it "family_name_furiganaがひらがなでは登録できない" do
+        @user.family_name_furigana = 'あいう'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Family name furigana is invalid")
+      end
+      it "family_nameが全角文字以外では登録できない"do
+        @user.family_name = 'aaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Family name is invalid")
+      end 
+      it "first_nameが全角文字以外では登録できない"do
+        @user.first_name = 'aaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name is invalid")
+      end 
     end
-  end
 
+  end
 end
