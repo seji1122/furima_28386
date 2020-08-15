@@ -11,6 +11,8 @@ class User < ApplicationRecord
     NAME = /\A[ぁ-んァ-ン一-龥]/
     validates :first_name, format: { with: NAME }
     validates :family_name, format: { with: NAME }
+    validates :first_name_furigana
+    validates :family_name_furigana
   end
   
 end

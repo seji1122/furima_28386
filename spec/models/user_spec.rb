@@ -25,11 +25,6 @@ describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
-      it "nicknameが7文字以上であれば登録できない" do
-        @user.nickname = "aaaaaaa"
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Nickname is too long (maximum is 6 characters)")
-      end
       it "emailが空では登録できない" do
         @user.email = ''
         @user.valid?
@@ -66,22 +61,22 @@ describe User, type: :model do
       it "first_nameが空では登録できない" do
         @user.first_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("First_name can't be blank")
+        expect(@user.errors.full_messages).to include("First name can't be blank", "First name is invalid")
       end
       it "family_nameが空では登録できない" do
         @user.family_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Family_name can't be blank")
+        expect(@user.errors.full_messages).to include("Family name can't be blank", "Family name is invalid")
       end
       it "first_name_furiganaが空では登録できない" do
         @user.first_name_furigana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("First_name_furigana can't be blank")
+        expect(@user.errors.full_messages).to include("First name furigana can't be blank")
       end
       it "family_name_furiganaが空では登録できない"do
         @user.family_name_furigana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Family_name_furigana can't be blank")
+        expect(@user.errors.full_messages).to include("Family name furigana can't be blank")
       end
     end
   end
