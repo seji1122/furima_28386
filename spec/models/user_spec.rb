@@ -17,6 +17,32 @@ describe User, type: :model do
         @user.password_confirmation = "000000"
         expect(@user).to be_valid
       end
+      it "emailの記述があれば登録できる"do
+        @user.email = "tech@gmail.com"
+        expect(@user).to be_valid
+      end
+      it "birthdayの記述があれば登録できる"do
+        @user.birthday = "1995-09-09"
+        expect(@user).to be_valid
+      end
+      it "first_nameの記述があれば登録できる"do
+        @user.first_name = "太郎"
+        expect(@user).to be_valid
+      end
+      it "family_nameの記述があれば登録できる"do
+        @user.family_name = "山田"
+        expect(@user).to be_valid
+      end
+      it "first_name_furiganaの記述があれば登録できる"do
+        @user.first_name_furigana = "ヤマダ"
+        expect(@user).to be_valid
+      end
+      it "family_name_furiganaの記述があれば登録できる"do
+        @user.family_name_furigana = "ヤマダ"
+        expect(@user).to be_valid
+      end
+
+
     end
 
     context '新規登録がうまくいかないとき' do
@@ -77,6 +103,11 @@ describe User, type: :model do
         @user.family_name_furigana = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Family name furigana can't be blank")
+      end
+      it "first_name_furiganaがひらがなでは登録できない" do
+        @user.first_name_furigana = 'あいう'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name furigana is invalid")
       end
     end
   end
