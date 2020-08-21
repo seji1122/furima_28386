@@ -1,18 +1,22 @@
 class Item < ApplicationRecord
-  def change
-    create_table :tweets do |t|
-      t.string :name
-      t.string :image
-      t.string :introduction
-      t.integer :category
-      t.integer :item_condition
-      t.integer :delivery_fee
-      t.integer :shipping_area
-      t.integer :shipping_days
-      t.reference :user 
-      t.timestamps
-    end
+  
+  with_options presence: true do
+    validates :image
+    validates :name
+    validates :introduction
+    
+    validates :shipping_days_id, numericality: { other_than: 1 } 
+    validates :category_id, numericality: { other_than: 1 }
+    validates :item_condition_id, numericality: { other_than: 1 }
+    validates :delivery_fee_id, numericality: { other_than: 1 }
+    validates :shipping_area_id, numericality: { other_than: 1 }
   end
 
-
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :category
+  belongs_to_active_hash :item_condition
+  belongs_to_active_hash :delivery_fee
+  belongs_to_active_hash :shipping_area
+  belongs_to_active_hash :shipping_day
+  
 end
