@@ -60,11 +60,17 @@ describe Item do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
-      it "priceが¥300~¥9,999,999の間でないと出品できない" do
+      it "priceが¥300未満は出品できない" do
         @item.price = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
+      it "priceが¥10000000以上は出品できない" do
+        @item.price = '88888888'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+      end
+
 
     end
   end
