@@ -4,12 +4,14 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :introduction
+    validates :price
     
     validates :shipping_days_id, numericality: { other_than: 1 } 
     validates :category_id, numericality: { other_than: 1 }
     validates :item_condition_id, numericality: { other_than: 1 }
     validates :delivery_fee_id, numericality: { other_than: 1 }
     validates :shipping_area_id, numericality: { other_than: 1 }
+
   end
 
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -18,5 +20,8 @@ class Item < ApplicationRecord
   belongs_to_active_hash :delivery_fee
   belongs_to_active_hash :shipping_area
   belongs_to_active_hash :shipping_day
+
+  belongs_to :user
+  has_one_attached :image
   
 end
