@@ -3,7 +3,7 @@ describe Item do
   before do
     user = FactoryBot.create(:user)
     @item = FactoryBot.build(:item)
-    # @item.image.attach("spec/camera.png")
+    
     @item.image = fixture_file_upload('spec/camera.png')
   end
 
@@ -59,6 +59,11 @@ describe Item do
         @item.price = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
+      end
+      it "priceが¥300~¥9,999,999の間でないと出品できない" do
+        @item.price = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
 
     end

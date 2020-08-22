@@ -5,7 +5,7 @@ class Item < ApplicationRecord
     validates :name
     validates :introduction
     validates :price
-    
+    validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
     validates :shipping_days_id, numericality: { other_than: 1 } 
     validates :category_id, numericality: { other_than: 1 }
     validates :item_condition_id, numericality: { other_than: 1 }
