@@ -15,5 +15,6 @@ class User < ApplicationRecord
     validates :first_name_furigana, format: { with: KATAKANA }
     validates :family_name_furigana, format: { with: KATAKANA }
   end
+  has_many :items
   
 end
