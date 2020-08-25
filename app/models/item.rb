@@ -19,7 +19,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :item_condition
   belongs_to_active_hash :delivery_fee
   belongs_to_active_hash :shipping_area
-  belongs_to_active_hash :shipping_day
+  belongs_to_active_hash :shipping_days
 
   belongs_to :user
   has_one_attached :image
