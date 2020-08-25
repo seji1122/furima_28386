@@ -8,13 +8,12 @@ class User < ApplicationRecord
     validates :nickname
     validates :birthday
     validates :password
-    NAME = /\A[ぁ-んァ-ン一-龥]/
+    NAME = /\A[ぁ-んァ-ン一-龥]/.freeze
     validates :first_name, format: { with: NAME }
     validates :family_name, format: { with: NAME }
-    KATAKANA = /[\p{katakana} ー－&&[^ -~｡-ﾟ]]+/
+    KATAKANA = /[\p{katakana} ー－&&[^ -~｡-ﾟ]]+/.freeze
     validates :first_name_furigana, format: { with: KATAKANA }
     validates :family_name_furigana, format: { with: KATAKANA }
   end
   has_many :items
-  
 end
