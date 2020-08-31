@@ -38,27 +38,27 @@
 - belongs_to :user
 - has_one :purchases
 
-## delivery テーブル
+## order テーブル
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
 | post_coad | string | null: false |
-| prefectures | integer | null: false |
+| prefecture | integer | null: false |
 | city | string | null: false |
-| banci | string | null: false |
-| buliding_num | string |      |
+| banchi | string | null: false |
+| building_num | string |      |
 | phone_num | string | null: false |
 | purchase | references | null: false, foreign_key: true|
 
 - belongs_to :purchase
 
-## purchases テーブル
+## purchase テーブル
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
 | user | references | null: false, foreign_key: true|
-| item | references | null: false |
+| item | references | null: false, foreign_key: true|
 
 belongs_to :user
 belongs_to :item
-has_one :delivery
+has_one :order

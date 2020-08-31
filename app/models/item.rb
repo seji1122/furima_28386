@@ -9,7 +9,7 @@ class Item < ApplicationRecord
     validates :category_id, numericality: { other_than: 1 }
     validates :item_condition_id, numericality: { other_than: 1 }
     validates :delivery_fee_id, numericality: { other_than: 1 }
-    validates :shipping_area_id, numericality: { other_than: 1 }
+    #validates :shipping_area_id, numericality: { other_than: 1 }
   end
 
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -21,4 +21,5 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_one_attached :image
+  has_one :purchase
 end
