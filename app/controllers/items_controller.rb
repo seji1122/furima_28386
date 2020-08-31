@@ -53,6 +53,7 @@ class ItemsController < ApplicationController
     render json: { item: item }
   end
 
+  
   private
 
   def item_paramas
