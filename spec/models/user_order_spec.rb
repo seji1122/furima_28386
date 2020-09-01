@@ -5,9 +5,8 @@ describe UserOrder do
     @item = FactoryBot.build(:item)
     @item.image = fixture_file_upload('spec/camera.png')
     @item.save
-    # @purchase = FactoryBot.create(:purchase)
     @userorder = FactoryBot.build(:user_order,item_id: @item.id, user_id: @user.id)
-    #
+    
   end
 
   describe '商品購入' do
@@ -29,13 +28,11 @@ describe UserOrder do
       it 'post_coadが空だと登録できない' do
         @userorder.post_coad = ''
         @userorder.valid?
-        # binding.pry
         expect(@userorder.errors.full_messages).to include("Post coad can't be blank", "Post coad is invalid. Include hyphen(-)")
       end
       it 'cityが空だと登録できない' do
         @userorder.city = ''
         @userorder.valid?
-        #binding.pry
         expect(@userorder.errors.full_messages).to include("City can't be blank")
       end
       it 'banchiが空だと登録できない' do
