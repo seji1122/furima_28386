@@ -16,9 +16,7 @@ class OrdersController < ApplicationController
    end
 
   def create
-    #@item =Item.find(params[:item_id])
     @order = UserOrder.new(order_params)
-  
     if @order.valid?
       pay_item
       @order.save
@@ -61,5 +59,4 @@ class OrdersController < ApplicationController
         currency:'jpy'                
       )
     end
-  
 end

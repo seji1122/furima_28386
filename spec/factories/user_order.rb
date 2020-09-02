@@ -5,9 +5,5 @@ FactoryBot.define do
     banchi         {'青山15ー15'}
     phone_num      {'09012345678'}
     shipping_area_id  {'6'}
-    # token          {''}
-    
-  
-
   end
 end
